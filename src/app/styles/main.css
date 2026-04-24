@@ -3,8 +3,28 @@
 
 @theme {
   --font-sans: "Inter Variable", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --default-line-height: 1.5;
+  --color-main: #0a0a0a;
+  --color-secondary: rgba(255, 255, 255, 0.02);
+  --color-fg: #FFFFFF;
+  --color-fg-muted: #A3A3A3;
+  --color-accent: #00ff88;
+  --color-accent-soft: rgba(1, 255, 136, 0.10);
+  --color-error: #ff4444;
+  --color-stroke: rgba(255, 255, 255, 0.1);
+  --color-stroke-green: rgba(1, 255, 136, 0.20);
+  --color-gradient-start: var(--color-accent-soft);
+  --color-gradient-end: rgba(255, 0, 128, 0.10);
+  --text-size-display: 48px;
+  --text-size-title: 24px;
+  --text-size-body: 14px;
+  --text-size-caption: 12px;
 }
 
 body {
+  font-size: var(--text-size-body);
+  line-height: var(--default-line-height);
   font-optical-sizing: auto;
+  color: var(--color-fg);
+  background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-end)), var(--color-main);
 }

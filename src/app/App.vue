@@ -1,8 +1,7 @@
 <script setup lang="ts">
+import {AuthPage} from "@/pages/AuthPage";
 </script>
 
 <template>
-  <div>
-    Startkit-Vue
-  </div>
+  <AuthPage/>
 </template>
