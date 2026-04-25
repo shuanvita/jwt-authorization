@@ -13,6 +13,7 @@
   --color-error: #ff4444;
   --color-stroke: rgba(255, 255, 255, 0.1);
   --color-stroke-green: rgba(1, 255, 136, 0.20);
+  --color-input: rgba(255, 255, 255, 0.05);
   --color-gradient-start: var(--color-accent-soft);
   --color-gradient-end: rgba(255, 0, 128, 0.10);
   --text-size-display: 48px;
@@ -27,4 +28,11 @@ body {
   font-optical-sizing: auto;
   color: var(--color-fg);
   background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-end)), var(--color-main);
+}
+
+.formkit-outer[data-invalid="true"] .formkit-input,
+.formkit-outer.formkit-invalid .formkit-input,
+.formkit-outer[data-invalid="true"] .formkit-inner,
+.formkit-outer.formkit-invalid .formkit-inner {
+  border-color: var(--color-error);
 }
