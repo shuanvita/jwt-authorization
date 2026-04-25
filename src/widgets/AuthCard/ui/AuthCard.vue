@@ -26,7 +26,6 @@ const onSubmit = () => {
         type="email"
         label="Email"
         validation="required|email"
-        messages-class="mt-1"
         placeholder="user@example.com"
       />
       <FormKit
@@ -35,7 +34,6 @@ const onSubmit = () => {
         value="super-secret"
         label="Password"
         validation="required"
-        validation-visibility="live"
         :validation-messages="{ required: 'Password must be at least 6 characters' }"
       />
       <FormKit
