@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import {AuthCard} from "@/widgets/AuthCard";
+
 </script>
 
 <template>
   <main class="min-h-screen grid grid-cols-1 justify-items-center place-content-center px-4">
-    <AuthCard/>
+    RegistrationPage
   </main>
 </template>
