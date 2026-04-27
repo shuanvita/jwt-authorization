@@ -1,19 +1,34 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import {VSvg} from "@/shared/ui/VSvg";
 import {VModal} from "@/shared/ui/VModal";
 import {VAlert} from "@/shared/ui/VAlert";
 import {AuthBySocial} from "@/features/AuthBySocial";
+import { loginByEmail } from '@/features/AuthByEmail'
+import { accessToken } from '@/shared/lib/token'
+import { HttpError } from '@/shared/api'
+
+const router = useRouter()
 
 const formError = ref('')
 
-const onSubmit = () => {
+const onSubmit = async (data: { email: string; password: string }) => {
   formError.value = ''
-  console.log('submit')
+  try {
+    const res = await loginByEmail({ email: data.email, password: data.password })
+    accessToken.value = res.accessToken
+    await router.push({ name: 'welcome', query: { source: 'login' } })
+  } catch (e) {
+    formError.value =
+      e instanceof HttpError
+        ? e.message
+        : 'Invalid credentials. Please try again.'
+  }
 }
 
 const onSubmitInvalid = () => {
-  formError.value = 'Invalid credentials. Please try again.'
+  formError.value = 'Please fix the errors in the form.'
 }
 
 const isForgotPasswordOpen = ref(false)
@@ -50,6 +65,7 @@ const onForgotPasswordClose = () => {
     >
       <FormKit
         type="email"
+        name="email"
         label="Email"
         validation="required|email"
         autocomplete="email"
@@ -57,12 +73,12 @@ const onForgotPasswordClose = () => {
       />
       <FormKit
         type="password"
-        name="Password"
+        name="password"
         label="Password"
         placeholder="••••••••"
         autocomplete="current-password"
-        validation="required"
-        :validation-messages="{ required: 'Password must be at least 6 characters' }"
+        validation="required|length:6"
+        :validation-messages="{ length: 'Password must be at least 6 characters' }"
       />
       <div class="flex items-center justify-between">
         <FormKit

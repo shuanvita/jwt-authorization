@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {AuthPage} from "@/pages/AuthPage";
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <AuthPage/>
+  <RouterView />
 </template>
