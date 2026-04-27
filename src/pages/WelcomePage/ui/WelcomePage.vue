@@ -18,7 +18,7 @@ const title = computed(() =>
 
 const description = computed(() =>
   source.value === 'register'
-    ? 'Your account has been created. Welcome aboard!'
+    ? 'Your account has been created. Welcome aboard!'npm u
     : 'You are now signed in to your account.',
 )
 
