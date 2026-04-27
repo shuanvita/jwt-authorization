@@ -8,7 +8,9 @@ export function decodeJwt<T = Record<string, unknown>>(
   const parts = token.split('.')
   if (parts.length < 2) return null
   try {
-    const base64 = parts[1].replace(/-/g, '+').replace(/_/g, '/')
+    const payload = parts[1]
+    if (!payload) return null
+    const base64 = payload.replace(/-/g, '+').replace(/_/g, '/')
     const padded = base64 + '='.repeat((4 - (base64.length % 4)) % 4)
     const json = decodeURIComponent(
       atob(padded)
