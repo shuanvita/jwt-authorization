@@ -35,8 +35,15 @@ interface MockUser {
 const DEFAULT_JWT =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwibmFtZSI6IkRlbW8gVXNlciIsImV4cCI6OTk5OTk5OTk5OX0.6YwQXnP4N5LNuK5qUxI2aKqEH8LcF9ocTfK3_k6fT4Q'
 
-const findUsersByEmail = (email: string): Promise<MockUser[]> =>
-  http<MockUser[]>(`/users?email=${encodeURIComponent(email)}`)
+const findUsersByEmail = async (email: string): Promise<MockUser[]> => {
+  try {
+    return await http<MockUser[]>(`/users?email=${encodeURIComponent(email)}`)
+  } catch (e) {
+    // mockapi.io returns 404 when the filter matches no records.
+    if (e instanceof HttpError && e.status === 404) return []
+    throw e
+  }
+}
 
 export const loginByEmail = async ({
   email,
